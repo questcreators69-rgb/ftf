@@ -27,7 +27,7 @@ export const LEVEL_CONFIGS: Record<number, LevelConfig> = {
     allowRequiredIngredients: false,
     allowPreferences: false,
     baseReward: 120,
-  ,
+  },
   2: {
     level: 2,
     name: 'Picky Orders',
