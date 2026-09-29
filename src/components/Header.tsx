@@ -44,7 +44,7 @@ isMuted,
         <button
               onClick={onExitToMenu}
           title="Return to Home"
-          className="flex items-center justify-between gap-3 bg-[#F3A41D] hover:bg-[#FBBF24] active:bg-[#D97706] border-3 border-[#452605] py-1.5 px-3 rounded-xs shadow-[2px-2px-0px-#000] cursor-pointer transition-transform active:translate-y-0.5"
+          className="flex items-center justify-between gap-3 bg-[#F3A41D] hover:bg-[#FBBF24] active:bg-[#D97706] border-3 border-[#452605] py-1.5 px-3 rounded-xs shadow-[2px_2px_0px_#000] cursor-pointer transition-transform active:translate-y-0.5"
         >
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-7 bg-[#E05206] border-2 border-[#361502] p-0.5 flex flex-col justify-between shrink-0 shadow-xs">
@@ -85,14 +85,15 @@ isMuted,
             Career
           </button>
 
-          <button            onClick={() => onChangeMode('rush-hour')}
+          <button
+            onClick={() => onChangeMode('rush_hour')}
             className={`flex items-center gap-1 px-3 py-1 text-xs font-bold transition-all cursor-pointer ${
-              mode === 'rush-hour'
+              mode === 'rush_hour'
                 ? 'bg-[#F3A41D] text-[#1C1408] border border-[#8A5A0A] shadow-xs'
                 : 'text-[#968979] hover:text-[#EDE7DE]'
             }`}
         >
-            <BarChart2 className='me="w-3.5 h-3.5" />
+            <BarChart2 className="w-3.5 h-3.5" />
             <span>Rush</span>
           </button>
 
@@ -110,9 +111,33 @@ isMuted,
         </div>
 
         <div className="px-3.5 py-1.5 bg-[#0F0E16] border border-[#3A334F] flex items-center gap-1.5 shadow-inner">
-          <span className="text-[11px] text-[#A89E91] font-bold">TILL:</span>          <span className="font-display font-black text-base text-[#FACC15] tracking-wider">
+          <span className="text-[11px] text-[#A89E91] font-bold">TILL:</span>
+          <span className="font-display font-black text-base text-[#FACC15] tracking-wider">
             ₹{money}
           </span>
         </div>
         
+        <button
+          onClick={onToggleCompendium || onOpenNotebook}
+          title={isCompendiumOpen ? 'Hide Chef Compendium' : 'Show Chef Compendium'}
+          className={`flex items-center gap-1.5 px-3 py-1.5 border-2 font-bold transition-all cursor-pointer shadow-xs active:translate-y-0.5 text-xs ${
+            isCompendiumOpen              
+              ? 'bg-[#231F33] hover:bg-[#322C48] active:bg-[#3D3558] border-[#EAB308]/70 hover:border-[#EAB308] text-[#FDE047]'
+              : 'bg-[#151221] hover:bg-[#231F33] border-[#786958] text-[#D8CEBF]'
+          }`}
+        >
+          <BookOpen className="w-3.5 h-3.5 text-[#FACC15]" />
+          <span>COMPENDIUM {discoveredCount}/{totalIngredients}</span>
+        </button>
+
+        <button          onClick={onToggleMute}
+          title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
+          className="w-8 h-8 bg-[#231F33] hover:bg-[#322C48] border border-[#3D3558] text-[#D8CEBF] hover:text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs active:translate-y-0.5"
+        >
+        {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+        </button>
+      </div>
+    </header>
+  );
+}
         
