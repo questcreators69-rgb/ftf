@@ -117,8 +117,92 @@ export function CompendiumBoard({
                       </div>
                       <div className="text-[9px] text-[#7A6C5B] font-bold truncate mt-0.5">
                       {ing.servingGrams}g portion • {ing.badge}
-                      </div>                    </div>                  </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="flex flex-col items-end gap-0.5 shrink-0">
                     {ing.diet === 'vegan' && (
                       <span className="bg-[#4ADE80] text-[#14532D] border border-[#16A34A] px-1 py-0.2 text-[8px] font-bold uppercase">
- 
+                      VEGAN
+                      </span>                    )}
+                    {ing.diet === 'vegetarian' && (
+                      <span className="bg-[#FDE047] text-[#854D0E] border border-[#EAB308] px-1 py-0.2 text-[8px] font-bold uppercase">
+                        VEG
+                     </span>                    )}
+                    {ing.allergens.map(al => (
+                      <span                       key={al}
+                        className="bg-[#F472B6] text-[#831843] border border-[#DB2777] px-1 py-0.2 text-[8px] font-bold uppercase"
+                      >
+                        {al}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="bg-[#EFE5CF] border border-[#DECBB0] p-1 grid grid-cols-5 text-center text-[9px] text-[#332A20] font-bold">
+                  <div>
+                    <div className="text-[8px] text-[#7A6C5B]">CAL</div>
+                    <div>{ing.nutrition.calories}</div>
+                  </div>
+                  <div>
+                    <div className="text-[8px] text-[#7A6C5B]">PROT</div>
+                    <div>{ing.nutrition.protein}g</div>
+                  </div>
+                  <div>
+                    <div className="text-[8px] text-[#7A6C5B]">CARB</div>
+                    <div>{ing.nutrition.carbohydrates}g</div>
+                  </div>
+                  <div>
+                    <div className="text-[8px] text-[#7A6C5B]">FAT</div>
+                    <div>{ing.nutrition.fat}g</div>
+                  </div>
+                  <div>
+                    <div className="text-[8px] text-[#7A6C5B]">FIBR</div>
+                    <div>{ing.nutrition.fiber}g</div>
+                  </div>
+                </div>
+              </div>
+            );
+})
+        ) : (
+          recipes.map(recipe => {
+            const isDiscovered = discoveredRecipeIds.includes(recipe.id);
+
+            if (!isDiscovered) {
+              return (
+                <div
+                  key={recipe.id}
+                  className="border-2 border-dashed border-[#C7B59A] bg-[#EDE2CE]/70 p-2 flex items-center gap-2 opacity-75"
+                >
+                  <div className="w-8 h-8 bg-[#D8C6AC] border border-[#B5A186] flex items-center justify-center shrink-0">
+                    <Lock className="w-3.5 h-3.5 text-[#756450]" />
+                  </div>                  <div>
+                    <div className="font-bold text-xs text-[#524436]">Secret Formula ???</div>
+                    <div className="text-[9px] text-[#8C7A65]">Combine correct items on plate</div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={recipe.id}
+                className="border-2 border-[#D8C7AA] bg-[#FAF5E8] p-1.5 flex flex-col justify-between gap-1 shadow-2xs"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="font-bold text-xs text-[#1F1C18]">{recipe.name}</div>
+                  <span className="bg-[#FEF08A] text-[#854D0E] border border-[#FACC15] text-[9px] font-bold px-1 py-0.5">
+                    +₹{recipe.bonus}
+                  </span>
+                </div>
+                <p className="text-[9px] text-[#6B5E4F]">{recipe.description}</p>
+                <div className="text-[9px] text-[#15803D] font-bold">DISCOVERED FORMULA</div>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>  
+);
+}
+                
