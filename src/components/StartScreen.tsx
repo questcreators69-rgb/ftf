@@ -88,3 +88,82 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
             <div className="w-full h-0.5 bg-[#FACC15]/30" />
           </div>
         </div>
+        
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-[#3A322C] border-t-4 border-[#221D1A]">
+          <div className="w-full h-full opacity-20 bg-[radial-gradient(#1A1612-1px,transparent-1px)] [background-size:12px-12px]" />
+        </div>
+        <div className="absolute top-10 left-10 right-10 h-36">
+          <svg className="w-full h-full" viewBox="0 0 1000 150" fill="none">
+            <path d="M 50,60 Q 250,140 500,80 Q 750,140 950,50" stroke="#2B2117" strokeWidth="3" />
+            {[
+              [80, 75],
+              [140, 95],
+              [200, 110],
+              [260, 115],
+              [320, 110],
+              [380, 98],
+              [440, 85],
+              [500, 80],
+              [560, 92],
+              [620, 108],
+              [680, 118],
+              [740, 118],
+              [800, 105],
+              [860, 88],
+              [920, 65],
+            ].map(([CopyX, cy], i) => (
+              <g key={i}>
+                <line x1={cx} y1={cy - 8} x2={cx} y2={cy} stroke="#1C1814" strokeWidth="2" />
+                <circle cx={cx} cy={cy + 4} r={6} fill="#FACC15" />
+                <circle cx={cx} cy={cy + 4} r={12} fill="#FDE047" opacity="0.25" />
+              <BarChart2/g>
+            ))}
+          </svg>
+        </div>
+        <div className="absolute bottom-28 left-6 sm:left-14 flex flex-col items-center">
+          <div className="w-4 h-6 bg-[#EAB308] border-2 border-[#1A1612] rounded-t-sm shadow-[0-0-24px-#FACC15]" />
+          <div className="w-2.5 h-36 bg-[#1A1612]" />
+          <div className="w-6 h-6 bg-[#2B231D] border-2 border-[#1A1612]" />
+        </div>
+        <div className="absolute bottom-6 right-2 sm:right-12 lg:right-20 flex items-end">
+          <div className="relative">
+            <div className="w-[340px] sm:w-[480px] lg:w-[560px] h-[260px] sm:h-[300px] relative">
+              <div className="absolute bottom-6 left-0 right-0 h-44 bg-[#C22323] border-4 border-[#1A1612] rounded-r-md">
+                <div className="absolute top-0 left-0 w-24 h-full bg-[#E22E2E]" />
+                <div className="absolute bottom-2 left-6 w-14 h-14 rounded-full bg-[#1A1612] border-4 border-[#78716C] flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-[#E5E5E5] border-2 border-[#1A1612]" />
+                </div>                <div className="absolute bottom-2 right-12 w-14 h-14 rounded-full bg-[#1A1612] border-4 border-[#78716C] flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full bg-[#E5E5E5] border-2 border-[#1A1612]" />
+                </div>
+                <div className="absolute top-2 left-3 w-16 h-20 bg-[#FAF3DE] border-2 border-[#1A1612] p-1">
+                  <div className="w-full h-full bg-[#38BDF8] border border-[#1A1612] opacity-80" />
+                </div>
+                <div className="absolute top-2 left-24 right-6 h-28 bg-[#181614] border-3 border-[#1A1612] p-2 flex flex-col justify-between overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#FEF08A]/15 to-transparent pointer-events-none" />
+
+                  <div className="flex justify-between items-center z-10 border-b border-[#3E372E] pb-1">
+                    <div className="flex gap-1">
+                      <div className="w-3 h-4 bg-[#B91C1C] border border-[#520B0B]" />
+                      <div className="w-3 h-5 bg-[#D97706] border border-[#78350F]" />
+                      <div className="w-3 h-4 bg-[#15803D] border border-[#052E16]" />
+                    </div>                    <div className="flex gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-[#383127] border border-[#5E5242]" />
+                      <div className="w-4 h-4 rounded-full bg-[#383127] border border-[#5E5242]" />
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-end relative z-10 -mb-2">
+                    <div className="flex flex-col items-center">
+                      <div className="w-12 h-8 bg-white border-2 border-[#1A1612] rounded-t-lg relative flex items-center justify-center">
+                        <div className="w-4 h-1 bg-[#D9D9D9] -mt-1" />
+                      </div>
+                      <div className="w-10 h-8 bg-[#FED7AA] border-x-2 border-[#1A1612] relative flex flex-col items-center justify-center">
+                        <div className="w-6 h-3 bg-[#78350F] -mt-1" />
+                        <div className="flex gap-2 mt-1">
+                          <div className="w-1 h-1.5 bg-[#1A1612]" />
+                          <div className="w-1 h-1.5 bg-[#1A1612]" />
+                        </div>
+                        <div className="w-2.5 h-0.5 bg-[#DC2626] mt-0.5" />
+                      </div>
+                      <div className="w-14 h-6 bg-white border-2 border-[#1A1612] rounded-t-xs flex items-center justify-center">
+        
+                       
