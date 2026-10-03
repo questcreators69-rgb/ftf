@@ -165,5 +165,49 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                         <div className="w-2.5 h-0.5 bg-[#DC2626] mt-0.5" />
                       </div>
                       <div className="w-14 h-6 bg-white border-2 border-[#1A1612] rounded-t-xs flex items-center justify-center">
-        
+                        <div className="w-8 h-2 bg-[#dc2626]" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full h-3 bg-[#422b18] border-t-2 border-[#1a1612] relative z-20 flex justify-end gap-1 px-2 items-center">
+                    <div className="w-2 h-4 bg-[#dc2626] border border-[#7f1d1d] -mt-2" />
+                    <div className="w-2 h-4 bg-[#facc15] border border-[#854d0e] -mt-2" />
+                  </div>                </div>              </div>
+              <div className="absolute top-10 left-20 right-4 h-10 flex overflow-hidden z-20">
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(n => (
+                  <div                    key={n}
+                    className={`flex-1 h-full border-b-3 border-x border-[#1a1612] ${
+                      n % 2 === 0 ? 'bg-[#dc2626]' : 'bg-white'
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="absolute top-4 left-32 w-28 h-6 bg-[#38312B] border-2 border-[#1A1612] z-10" />
+
+              <div className="absolute bottom-1 right-2 w-14 h-24 bg-[#1E1B18] border-2 border-[#1A1612] p-1.5 flex flex-col items-center justify-between text-center z-30">
+                <span className="text-[7px] text-[#E5E0D8] font-bold leading-tight uppercase">
+                  GOOD<br />FOOD<br />BRIGHT<br />DAYS
+                </span>
+                <span className="text-[#DC2626] text-xs">♥</span>
+              </div>
+            </div>
+            <div className="absolute bottom-3 left-28 sm:left-36 flex gap-6 z-30">
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-2 bg-[#78350F] border border-[#1A1612] rounded-xs" />
+                <div className="w-6 h-10 border-x-2 border-[#451A03]" />
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-8 h-2 bg-[#78350F] border border-[#1A1612] rounded-xs" />
+                <div className="w-6 h-10 border-x-2 border-[#451A03]" />
+              </div>
+            </div>
+            <div className="absolute bottom-3 left-10 sm:left-14 w-16 h-24 bg-[#2C241E] border-2 border-[#1A1612] p-1 z-30 flex flex-col items-center justify-between text-center shadow-md">
+              <span className="text-[7px] text-[#EDE7DC] font-bold leading-tight uppercase mt-1">
+                SERVE<br />TASTY<br />FOOD<br />MAKE<br />HAPPY<br />PEOPLE
+            </span>
+              <span className="text-[#DC2626] text-[10px]">♥</span>
+            </div>
+          </div>
+
+          
                        
