@@ -111,12 +111,12 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
               [800, 105],
               [860, 88],
               [920, 65],
-            ].map(([CopyX, cy], i) => (
+            ].map(([cx, cy], i) => (
               <g key={i}>
                 <line x1={cx} y1={cy - 8} x2={cx} y2={cy} stroke="#1C1814" strokeWidth="2" />
                 <circle cx={cx} cy={cy + 4} r={6} fill="#FACC15" />
                 <circle cx={cx} cy={cy + 4} r={12} fill="#FDE047" opacity="0.25" />
-              <BarChart2/g>
+              </g>
             ))}
           </svg>
         </div>
@@ -132,7 +132,8 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                 <div className="absolute top-0 left-0 w-24 h-full bg-[#E22E2E]" />
                 <div className="absolute bottom-2 left-6 w-14 h-14 rounded-full bg-[#1A1612] border-4 border-[#78716C] flex items-center justify-center">
                   <div className="w-5 h-5 rounded-full bg-[#E5E5E5] border-2 border-[#1A1612]" />
-                </div>                <div className="absolute bottom-2 right-12 w-14 h-14 rounded-full bg-[#1A1612] border-4 border-[#78716C] flex items-center justify-center">
+                </div>
+                <div className="absolute bottom-2 right-12 w-14 h-14 rounded-full bg-[#1A1612] border-4 border-[#78716C] flex items-center justify-center">
                   <div className="w-5 h-5 rounded-full bg-[#E5E5E5] border-2 border-[#1A1612]" />
                 </div>
                 <div className="absolute top-2 left-3 w-16 h-20 bg-[#FAF3DE] border-2 border-[#1A1612] p-1">
@@ -209,5 +210,15 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
             </div>
           </div>
 
+          <div className="hidden md:flex flex-col items-center -ml-6 -mb-6 relative z-10">
+              <div className="w-48 h-64 bg-[#15803D] rounded-full border-4 border-[#0B3519] relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(#166534-4px,transparent-4px)] [background-size:16px-16px]" />
+            </div>            <div className="w-10 h-32 bg-[#451A03] border-2 border-[#1A1612] -mt-10" />
+
+            <div className="absolute top-14 right-2 w-14 h-28 bg-[#FAF3DE] border-2 border-[#1A1612] p-1 shadow-md flex flex-col items-center justify-between text-center rotate-3">
+              <span childrenlassName="text-[8px] text-[#451A03] font-black uppercase leading-tight">
+                GOOD<br />FOOD<br />BRIGHTER<br /><DAYS>              </span>              <span className=ame="text-[#DC2626] text-xs">♥</span>            </div>          </div>        </div>      </div>
+      <div className="relative z-10 w-full h-full flex flex-col justify-between p-4 sm:p-8 max-w-7xl mx-auto">
+        <div className="w-full flex justify-end">
           
                        
