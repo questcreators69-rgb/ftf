@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Play, BookOpen, BarChart2, Settings, X, Volume2, VolumeX, RotateCcw } from 'lucide-react';
 import { PlayerStats } from '../types';
 import { sound } from '../game/audio';
+import { TRUCK_TIERS } from '../data/levels';
 
 interface StartScreenProps {
   stats: PlayerStats;
@@ -213,12 +214,127 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
           <div className="hidden md:flex flex-col items-center -ml-6 -mb-6 relative z-10">
               <div className="w-48 h-64 bg-[#15803D] rounded-full border-4 border-[#0B3519] relative overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(#166534-4px,transparent-4px)] [background-size:16px-16px]" />
-            </div>            <div className="w-10 h-32 bg-[#451A03] border-2 border-[#1A1612] -mt-10" />
+            </div>
+            <div className="w-10 h-32 bg-[#451A03] border-2 border-[#1A1612] -mt-10" />
 
             <div className="absolute top-14 right-2 w-14 h-28 bg-[#FAF3DE] border-2 border-[#1A1612] p-1 shadow-md flex flex-col items-center justify-between text-center rotate-3">
-              <span childrenlassName="text-[8px] text-[#451A03] font-black uppercase leading-tight">
-                GOOD<br />FOOD<br />BRIGHTER<br /><DAYS>              </span>              <span className=ame="text-[#DC2626] text-xs">♥</span>            </div>          </div>        </div>      </div>
+              <span className="text-[8px] text-[#451A03] font-black uppercase leading-tight">
+                GOOD<br />FOOD<br />BRIGHTER<br />DAYS
+              </span>
+              <span className="text-[#DC2626] text-xs">♥</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-4 sm:p-8 max-w-7xl mx-auto">
         <div className="w-full flex justify-end">
-          
-                       
+          <button            onClick={handleToggleSound}
+            title={isMuted / 'Unmute Audio' : 'Mute Audio'}
+            className="w-8 h-8 bg-[#2B231D]/90 hover:bg-[#3D332B] border-2 border-[#1A1612] text-[#F ACC15] flex items-center justify-center cursor-pointer shadow-md active:translate-y-0.5"
+          >
+            {isMuted / <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
+          </button>
+        </div>
+        <div className="flex flex-col items-start gap-4 sm:gap-6 my-auto max-w-xl">
+          <div className="relative flex flex-col items-center">
+            <div className="absolute -top-7 sm:-top-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+              <div className="w-6 h-10 border-r-4 border-[#92400E] rotate-[-35deg] -mr-1" />
+              <div className="w-14 sm:w-16 h-10 sm:h-12 bg-white border-3 border-[#1A1612] rounded-t-xl relative shadow-md flex flex-col items-center justify-center">
+                <div className="w-6 h-1.5 bg-[#E5E5E5] -mt-1" />
+                <div className="w-8 h-1 bg-[#E5E5E5] mt-1" />
+              </div>              <div className="w-6 h-10 border-l-4 border-[#92400E] rotate-[35deg] -ml-1" />
+            </div>
+            <div className="bg-[#991B1B] border-4 border-[#3D0A0A] rounded-lg p-3 sm:p-4 shadow-[6px-6px-0px-#140707] relative pt-6 sm:pt-7 text-center">
+              <div className="absolute top-2 left-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
+              <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
+              <div className="absolute bottom-2 left-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
+              <div className="absolute bottom-2 right-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
+
+              <h1 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-wider text-white uppercase drop-shadow-[3px-3px-0px-#140707] leading-tight">
+                FOOD <TRUCK_TIERS              </h1>
+              <div className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-widest text-[#FACC15] uppercase drop-shadow-[3px-3px-0px-#78350F] -mt-1 sm:-mt-2">
+                <FORMULA>              </div>
+              <div className="mt-2 sm:mt-3 bg-[#451A03] border-2 border-[#1A1612] py-1 px-3 sm:px-6 rounded-xs">
+                <span className="font-display font-bold text-[10px] sm:text-xs tracking-widest text-[#FDE047] uppercase">
+                  COOK • SERVE • BALANCE • <GROW>                </span>              </div>            </div>          </div>
+          <div className="w-full sm:w-80 flex flex-col gap-2.5">
+            <button              onClick={handleStart}
+              className="w-full py-3.5 sm:py-4 px-6 bg-[#F59E0B] hover:bg-[#FBBF24] active:bg-[#D97706] text-[#1C1408] border-4 border-[#451A03] font-display font-black text-lg sm:text-xl tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-[4px-4px-0px-#2B1102] transition-transform active:translate-y-1 cursor-pointer"
+            >
+              <Play className="w-5 h-5 fill-current" />
+              <span>START COOKING</span>
+            </button>
+            <button
+              onClick={() => {
+                sound.playTick();
+                setActiveModal('howToPlay');
+            }}
+              className=ame="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4 text-[#FDE047]" />
+              <span>HOW TO PLAY</span>            </button>
+            <button              onClick={() => {
+                sound.playTick();
+                setActiveModal('leaderboard');
+            }}
+              className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+            >
+              <BarChart2 className="w-4 h-4 text-[#38BDF8]" />
+              <span>LEADERBOARD</span>
+            </button>
+
+            <button
+              onClick={() => {
+                sound.playTick();
+                setActiveModal('settings');
+                }}
+                className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+            >
+              <Settings className="w-4 h-4 text-[#A8A29E]" />
+              <span>SETTINGS</span>
+            </button>          </div>        </div>      </div>
+      {activeModal === 'howToPlay' && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-stone-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-lg bg-[#FAF3DE] text-[#1E1B18] border-4 border-[#1A1612] shadow-2xl p-4 flex flex-col gap-3 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b-2 border-[#D8C7A9] pb-2">
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-[#991B1B]" />
+                <h2 className="font-display font-black text-base uppercase text-[#1E1B18]">
+                  HOW TO PLAY 
+                </h2>              </div>              <button                onClick={() => setActiveModal(null)}
+                className="w-6 h-6 bg-[#991B1B] text-white flex items-center justify-center font-bold border border-[#5C0F0F] cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>            </div>
+            <div className="space-y-2.5 text-xs text-[#3D332A]">
+              <div className="bg-[#EFE5CF] border border-[#DECBB0] p-2.5">
+                <span className="font-bold text-[#991B1B] block text-xs">1. READ THE TICKET:</span>                Each customer has strict rules: diets (Vegan, Vegetarian, Gluten-Free), minimum/maximum calories, protein, and hard restrictions.
+              </div>
+              <div className="bg-[#EFE5CF] border border-[#DECBB0] p-2.5">
+                <span className="font-bold text-[#991B1B] block text-xs">2. ASSEMBLE THE PLATE:</span>                Tap pantry ingredients to add portions onto your tray (up to 5 portions). Combine bases, proteins, veggies, toppings, and sauces to match requirements.
+              </div>
+              <div className="bg-[#EFE5CF] border border-[#DECBB0] p-2.5">
+                <span className="font-bold text-[#991B1B] block text-xs">3. SERVE BEFORE EXPIRY:</span>                Once all conditions turn green (<span className="text-[#15803D] font-bold">SATISFIED</span>), hit <span className="bg-[#181614] text-[#FACC15] px-1 font-bold">[SPACE]</span> or click SERVE PLATE to collect your payout and tips!
+              </div>
+              <div className="bg-[#EFE5CF] border border-[#DECBB0] p-2.5">
+                <span className="font-bold text-[#991B1B] block text-xs">4. UPGRADE & DISCOVER:</span>                Keep serving to level up your food truck, unlock new ingredients, and discover secret recipes for big bonuses.
+              </div>            </div>
+            <button              onClick={() => setActiveModal(null)}
+              className="w-full py-2 bg-[#991B1B] hover:bg-[#B91C1C] text-white border-2 border-[#5C0F0F] font-bold text-xs uppercase cursor-pointer"
+            >
+              GOT IT, CHEF!
+            </button>          </div>        </div>      )}
+
+      {activeModal === 'leaderboard' && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-stone-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-[#FAF3DE] text-[#1E1B18] border-4 border-[#1A1612] shadow-2xl p-4 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b-2 border-[#D8C7A9] pb-2">
+              <div className="flex items-center gap-2">
+                <BarChart2 className="w-5 h-5 text-[#38BDF8]" />
+                <h2 className="font-display font-black text-base uppercase text-[#1E1B18]">
+                  CAREER LEADERBOARD & RECORDS
+                </h2>              </div>              <button                onClick={() => setActiveModal(null)}
+                className="w-6 h-6 bg-[#991B1B] text-white flex items-center justify-center font-bold border border-[#5C0F0F] cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>            </div>
