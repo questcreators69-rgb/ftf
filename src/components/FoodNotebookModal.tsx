@@ -157,4 +157,76 @@ export function FoodNotebookModal({
                         <div>{ing.nutrition.carbohydrates}g</div>
                       </div>
                       <div>
+                        <div className="text-[8px] text-[#7A6C5B]">FAT</div>
+                        <div>{ing.nutrition.fat}g</div>
+                      </div>
+                      <div>
+                        <div className="text-[8px] text-[#7A6C5B]">FIBR</div>
+                        <div>{ing.nutrition.fiber}g</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              {recipes.map(recipe => {
+                const isDiscovered = discoveredRecipeIds.includes(recipe.id);
+
+                if (!isDiscovered) {
+                  return (
+                    <div
+                      key={recipe.id}
+                      className="border-2 border-dashed border-[#C7B59A] bg-[#EDE2CE]/70 p-2.5 flex items-center gap-2.5 opacity-75"
+                    >
+                      <div className="w-8 h-8 bg-[#D8C6AC] border border-[#B5A186] flex items-center justify-center shrink-0">
+                        <Lock className="w-4 h-4 text-[#756450]" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-xs text-[#524436]">Secret Formula ???</div>
+                        <div className="text-[10px] text-[#8C7A65]">Combine matching items on plate</div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div
+                    key={recipe.id}
+                    className="border-2 border-[#D8C7AA] bg-[#FAF5E8] p-2 flex flex-col justify-between gap-1 shadow-2xs"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <div className="font-bold text-xs text-[#1F1C18]">{recipe.name}</div>
+                        <span className="bg-[#FEF08A] text-[#854D0E] border border-[#FACC15] text-[10px] font-bold px-1.5 py-0.5">
+                          +₹{recipe.bonus
+              }
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#6B5E4F] mt-1">{recipe.description}</p>
+                    </div>
+
+                    <div className="text-[9px] text-[#15803D] font-bold">
+                      DISCOVERED FORMULA
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div className="p-2.5 bg-[#EFE5CF] border-t-2 border-[#DECBB0] flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-1.5 bg-[#991B1B] hover:bg-[#B91C1C] text-white border-2 border-[#5C0F0F] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-md active:translate-y-0.5"
+          >
+            CLOSE COMPENDIUM
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
  
