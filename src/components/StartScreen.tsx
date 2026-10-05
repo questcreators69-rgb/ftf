@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Play, BookOpen, BarChart2, Settings, X, Volume2, VolumeX, RotateCcw } from 'lucide-react';
 import { PlayerStats } from '../types';
 import { sound } from '../game/audio';
-import { TRUCK_TIERS } from '../data/levels';
+
 
 interface StartScreenProps {
   stats: PlayerStats;
@@ -91,7 +91,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
         </div>
         
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-[#3A322C] border-t-4 border-[#221D1A]">
-          <div className="w-full h-full opacity-20 bg-[radial-gradient(#1A1612-1px,transparent-1px)] [background-size:12px-12px]" />
+          <div className="w-full h-full opacity-20 bg-[radial-gradient(#1A1612_1px,transparent_1px)] [background-size:12px_12px]" />
         </div>
         <div className="absolute top-10 left-10 right-10 h-36">
           <svg className="w-full h-full" viewBox="0 0 1000 150" fill="none">
@@ -122,7 +122,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
           </svg>
         </div>
         <div className="absolute bottom-28 left-6 sm:left-14 flex flex-col items-center">
-          <div className="w-4 h-6 bg-[#EAB308] border-2 border-[#1A1612] rounded-t-sm shadow-[0-0-24px-#FACC15]" />
+          <div className="w-4 h-6 bg-[#EAB308] border-2 border-[#1A1612] rounded-t-sm shadow-[0_0_24px_#FACC15]" />
           <div className="w-2.5 h-36 bg-[#1A1612]" />
           <div className="w-6 h-6 bg-[#2B231D] border-2 border-[#1A1612]" />
         </div>
@@ -167,19 +167,22 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                         <div className="w-2.5 h-0.5 bg-[#DC2626] mt-0.5" />
                       </div>
                       <div className="w-14 h-6 bg-white border-2 border-[#1A1612] rounded-t-xs flex items-center justify-center">
-                        <div className="w-8 h-2 bg-[#dc2626]" />
+                        <div className="w-8 h-2 bg-[#DC2626]" />
                       </div>
                     </div>
                   </div>
                   <div className="w-full h-3 bg-[#422b18] border-t-2 border-[#1a1612] relative z-20 flex justify-end gap-1 px-2 items-center">
-                    <div className="w-2 h-4 bg-[#dc2626] border border-[#7f1d1d] -mt-2" />
+                    <div className="w-2 h-4 bg-[#DC2626] border border-[#7f1d1d] -mt-2" />
                     <div className="w-2 h-4 bg-[#facc15] border border-[#854d0e] -mt-2" />
-                  </div>                </div>              </div>
+                  </div>
+                </div>
+              </div>
               <div className="absolute top-10 left-20 right-4 h-10 flex overflow-hidden z-20">
                 {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(n => (
-                  <div                    key={n}
+                  <div
+                    key={n}
                     className={`flex-1 h-full border-b-3 border-x border-[#1a1612] ${
-                      n % 2 === 0 ? 'bg-[#dc2626]' : 'bg-white'
+                      n % 2 === 0 ? 'bg-[#DC2626]' : 'bg-white'
                     }`}
                   />
                 ))}
@@ -213,7 +216,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
 
           <div className="hidden md:flex flex-col items-center -ml-6 -mb-6 relative z-10">
               <div className="w-48 h-64 bg-[#15803D] rounded-full border-4 border-[#0B3519] relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(#166534-4px,transparent-4px)] [background-size:16px-16px]" />
+              <div className="absolute inset-0 bg-[radial-gradient(#166534_4px,transparent_4px)] [background-size:16px_16px]" />
             </div>
             <div className="w-10 h-32 bg-[#451A03] border-2 border-[#1A1612] -mt-10" />
 
@@ -228,9 +231,10 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
       </div>
       <div className="relative z-10 w-full h-full flex flex-col justify-between p-4 sm:p-8 max-w-7xl mx-auto">
         <div className="w-full flex justify-end">
-          <button            onClick={handleToggleSound}
+          <button
+            onClick={handleToggleSound}
             title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-            className="w-8 h-8 bg-[#2B231D]/90 hover:bg-[#3D332B] border-2 border-[#1A1612] text-[#F ACC15] flex items-center justify-center cursor-pointer shadow-md active:translate-y-0.5"
+            className="w-8 h-8 bg-[#2B231D]/90 hover:bg-[#3D332B] border-2 border-[#1A1612] text-[#FACC15] flex items-center justify-center cursor-pointer shadow-md active:translate-y-0.5"
           >
             {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4" />}
           </button>
@@ -245,16 +249,16 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
               </div>
               <div className="w-6 h-10 border-l-4 border-[#92400E] rotate-[35deg] -ml-1" />
             </div>
-            <div className="bg-[#991B1B] border-4 border-[#3D0A0A] rounded-lg p-3 sm:p-4 shadow-[6px-6px-0px-#140707] relative pt-6 sm:pt-7 text-center">
+            <div className="bg-[#991B1B] border-4 border-[#3D0A0A] rounded-lg p-3 sm:p-4 shadow-[6px_6px_0px_#140707] relative pt-6 sm:pt-7 text-center">
               <div className="absolute top-2 left-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
               <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
               <div className="absolute bottom-2 left-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
               <div className="absolute bottom-2 right-2 w-2.5 h-2.5 bg-[#FACC15] border border-[#78350F]" />
 
-              <h1 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-wider text-white uppercase drop-shadow-[3px-3px-0px-#140707] leading-tight">
-                FOOD TRUCK_TIERS
+              <h1 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-wider text-white uppercase drop-shadow-[3px_3px_0px_#140707] leading-tight">
+                FOOD TRUCK
               </h1>
-              <div className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-widest text-[#FACC15] uppercase drop-shadow-[3px-3px-0px-#78350F] -mt-1 sm:-mt-2">
+              <div className="font-display font-black text-3xl sm:text-5xl lg:text-6xl tracking-widest text-[#FACC15] uppercase drop-shadow-[3px_3px_0px_#78350F] -mt-1 sm:-mt-2">
                 FORMULA
               </div>
               <div className="mt-2 sm:mt-3 bg-[#451A03] border-2 border-[#1A1612] py-1 px-3 sm:px-6 rounded-xs">
@@ -267,7 +271,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
           <div className="w-full sm:w-80 flex flex-col gap-2.5">
             <button
               onClick={handleStart}
-              className="w-full py-3.5 sm:py-4 px-6 bg-[#F59E0B] hover:bg-[#FBBF24] active:bg-[#D97706] text-[#1C1408] border-4 border-[#451A03] font-display font-black text-lg sm:text-xl tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-[4px-4px-0px-#2B1102] transition-transform active:translate-y-1 cursor-pointer"
+              className="w-full py-3.5 sm:py-4 px-6 bg-[#F59E0B] hover:bg-[#FBBF24] active:bg-[#D97706] text-[#1C1408] border-4 border-[#451A03] font-display font-black text-lg sm:text-xl tracking-wider uppercase flex items-center justify-center gap-2.5 shadow-[4px_4px_0px_#2B1102] transition-transform active:translate-y-1 cursor-pointer"
             >
               <Play className="w-5 h-5 fill-current" />
               <span>START COOKING</span>
@@ -277,16 +281,17 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                 sound.playTick();
                 setActiveModal('howToPlay');
             }}
-              className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+              className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px_3px_0px_#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
             >
               <BookOpen className="w-4 h-4 text-[#FDE047]" />
               <span>HOW TO PLAY</span>
             </button>
-            <button              onClick={() => {
+            <button
+              onClick={() => {
                 sound.playTick();
                 setActiveModal('leaderboard');
             }}
-              className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+              className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px_3px_0px_#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
             >
               <BarChart2 className="w-4 h-4 text-[#38BDF8]" />
               <span>LEADERBOARD</span>
@@ -297,7 +302,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                 sound.playTick();
                 setActiveModal('settings');
                 }}
-                className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px-3px-0px-#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
+                className="w-full py-2.5 sm:py-3 px-5 bg-[#3B2B20] hover:bg-[#4E392B] active:bg-[#2B1F17] text-[#EDE7DC] border-3 border-[#1A120D] font-display font-bold text-xs sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-[3px_3px_0px_#140E0A] transition-transform active:translate-y-0.5 cursor-pointer"
             >
               <Settings className="w-4 h-4 text-[#A8A29E]" />
               <span>SETTINGS</span>
@@ -384,7 +389,8 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
               <div className="flex justify-between border-b border-[#D8C7A9] pb-1">
                 <span>Orders Failed:</span>
                 <span className="font-bold text-rose-700">{stats.ordersFailed} orders</span>
-              </div>              <div className="flex justify-between border-b border-[#D8C7A9] pb-1">
+              </div>
+              <div className="flex justify-between border-b border-[#D8C7A9] pb-1">
                 <span>Best Service Streak:</span>
                 <span className="font-bold text-[#EAB308]">{stats.bestStreak} streak</span>
               </div>
@@ -393,6 +399,7 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                 <span className="font-bold">{stats.discoveredRecipes.length} recipes</span>
               </div>
             </div>
+
             <button
               onClick={() => setActiveModal(null)}
               className="w-full py-2 bg-[#991B1B] hover:bg-[#B91C1C] text-white border-2 border-[#5C0F0F] font-bold text-xs uppercase cursor-pointer"
@@ -418,14 +425,16 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                   setActiveModal(null);
                   setShowResetConfirm(false);
                 }}
-                className="w-6 h-6 bg-[#991B1B] text-white flex items-center justify-center font-bold border border-[#5C0F0F] cursor-pointe"
+                className="w-6 h-6 bg-[#991B1B] text-white flex items-center justify-center font-bold border border-[#5C0F0F] cursor-pointer"
               >
               <X className="w-4 h-4" />
-              </button>            </div>
+              </button>
+            </div>
             <div className="space-y-3 text-xs">
               <div className="bg-[#EFE5CF] border border-[#DECBB0] p-3 flex items-center justify-between">
                 <div>
-                  <span className="font-bold block text-sm">Sound Effects</span>                  <span className="text-[10px] text-[#786958]">Kitchen knocks, timer ticks, serve chimes</span>                </div>                <button                  onClick={handleToggleSound}
+                  <span className="font-bold block text-sm">Sound Effects</span>
+                  <span className="text-[10px] text-[#786958]">Kitchen knocks, timer ticks, serve chimes</span>                </div>                <button                  onClick={handleToggleSound}
                   className={`px-3 py-1.5 font-bold border-2 cursor-pointer ${
                     isMuted                      ? 'bg-rose-200 border-rose-600 text-rose-900'
                       : 'bg-emerald-200 border-emerald-600 text-emerald-900'
@@ -438,11 +447,14 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                 <div>
                   <span className="font-bold block text-sm">Reset Career Progress</span>                  <span className="text-[10px] text-[#786958]">Clear saved money, level, and recipe progress</span>                </div>
                 {!showResetConfirm ? (
-                  <button                    onClick={() => setShowResetConfirm(true)}
+                  <button
+                    onClick={() => setShowResetConfirm(true)}
                     className="w-full py-1.5 bg-[#451A03] hover:bg-[#5C2304] text-white border-2 border-[#1A1612] font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
-                    <span>RESET SAVE DATA</span>                  </button>                ) : (
+                    <span>RESET SAVE DATA</span>
+                  </button>
+                ) : (
                   <div className="flex gap-2">
                     <button                      onClick={() => {
                         onResetStats();
@@ -451,22 +463,33 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
                     }}
                       className="flex-1 py-1.5 bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs border border-rose-950 cursor-pointer"
                     >
-                      CONFIRM <RESET>                    </button>                    <button                      onClick={() => setShowResetConfirm(false)}
+                      CONFIRM RESET
+                    </button>
+                    <button
+                      onClick={() => setShowResetConfirm(false)}
                       className="flex-1 py-1.5 bg-stone-300 hover:bg-stone-400 text-stone-900 font-bold text-xs border border-stone-600 cursor-pointer"
                     >
                       CANCEL
-                    </button>                  </div>                )}
-              </div>            </div>
-            <button              onClick={() => {
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <button
+              onClick={() => {
                 setActiveModal(null);
                 setShowResetConfirm(false);
-}}
-              childrenlassName="w-full py-2 bg-[#991B1B] hover:bg-[#B91C1C] text-white border-2 border-[#5C0F0F] font-bold text-xs uppercase cursor-pointer"
+                }}
+              className="w-full py-2 bg-[#991B1B] hover:bg-[#B91C1C] text-white border-2 border-[#5C0F0F] font-bold text-xs uppercase cursor-pointer"
             >
               SAVE & CLOSE
-            </button>          </div>        </div>      )}
-    </div>  );
-} }}</RESET>  
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+} 
               
         
 
