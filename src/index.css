@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Pixelify Sans', cursive, monospace;
+    image-rendering: pixelated;
+  }
+  h1, h2, h3, .font-display {
+    font-family: 'Pixelify Sans', cursive, monospace;
+    font-weight: 700;
+  
+  }
+  code, pre, .font-mono {
+    font-family: 'Silkscreen', 'Space Mono', monospace;
+  }
+}
+
+.pixel-border {
+  box-shadow:
+    -2px 0 0 0 #18140F,
+    2px 0 0 0 #18140F,
+    0 -2px 0 0 #18140F,
+    0 2px 0 0 #18140F;
+}
+
+.pixel-shadow {
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.45);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.45);
+}
+
+.pixel-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.pixel-scrollb ar::-webkit-scrollbar-track {
+  background: #E2D4BC;
+  border-left: 2px solid #8C785C;
+}
+
+.pixel-scrollbar::-webkit-scrollbar-thumb {
+  background: #991B1B;
+  border: 2px solid #5C1010;
+}
