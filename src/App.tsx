@@ -13,7 +13,7 @@ import { INGREDIENTS } from './data/ingredients';
 import { RECIPES } from './data/recipes';
 import { LEVEL_CONFIGS } from './data/levels';
 import { getRandomFactForIngredients } from './data/facts';
-import { c alculatePlateNutrition } from './game/nutritionCalculator';
+import { calculatePlateNutrition } from './game/nutritionCalculator';
 import { validateOrder } from './game/orderValidator';
 import { generateOrder } from './game/orderGenerator';
 import { calculateReward } from './game/scoring';
@@ -123,3 +123,130 @@ const validation: OrderValidationResult = useMemo(() => {
 
     return () => clearInterval(interval);
   }, [gameState, isResultOpen, isNotebookOpen, handleOrderExpired]);
+
+const handleSelectIngredient = (ingredient: Ingredient) => {
+    const totalPortions = plate.reduce((sum, item) => sum + item.count, 0);
+    if (totalPortions >= 5) {
+      sound.playWarning();
+      return;
+    }
+
+    const existingIndex = plate.findIndex(p => p.ingredient.id === ingredient.id);
+
+    if (existingIndex >= 0) {
+      const currentCount = plate[existingIndex].count;
+      if (currentCount >= 2) {
+        sound.playWarning();
+        return;
+      }
+      setPlate(prev =>
+        prev.map((item, idx) =>
+          idx === existingIndex ? { ...item, count: item.count + 1 } : item
+        )
+      );
+      sound.playAdd();
+    } else {
+      setPlate(prev => [...prev, { ingredient, count: 1 }]);
+      sound.playAdd();
+    }
+};
+
+  const handleRemoveItem = (ingredientId: string) => {
+    setPlate(prev => {
+      const existing = prev.find(p => p.ingredient.id === ingredientId);
+      if (!existing) return prev;
+      if (existing.count > 1) {
+        return prev.map(p =>
+          p.ingredient.id === ingredientId ? { ...p, count: p.count - 1 } : p
+        );
+      }
+      return prev.filter(p => p.ingredient.id !== ingredientId);
+    });
+    sound.playRemove();
+  };
+
+  const handleClearPlate = () => {
+    setPlate([]);
+    sound.playRemove();
+  };
+
+  const handleServe = () => {
+    if (plate.length === 0) return;
+
+    let matchedRecipe: Recipe | null = null;
+    const plateIds = plate.map(p => p.ingredient.id);
+
+    for (const r of RECIPES) {
+      const allIncluded = r.ingredientIds.every(id => plateIds.includes(id));
+      if (allIncluded && !stats.discoveredRecipes.includes(r.id)) {
+        matchedRecipe = r;
+        break;
+      }
+    }
+
+    const reward = calculateReward(
+      currentOrder,
+      validation,
+      stats.currentStreak,
+      remainingSeconds,
+      matchedRecipe ? matchedRecipe.bonus : 0
+    );
+
+    setLastReward(reward);
+    setDiscoveredRecipe(matchedRecipe);
+    setLastFact(getRandomFactForIngredients(plateIds));
+
+    const isSuccess = validation.isReady && !validation.hasHardViolation;
+
+    if (isSuccess) {
+      sound.playServe();
+      const nextStreak = stats.currentStreak + 1;
+      const nextOrdersServed = stats.ordersServed + 1;
+      const shouldLevelUp = stats.level < 5 && nextOrdersServed % ordersNeeded === 0;
+      const nextLevelValue = shouldLevelUp ? stats.level + 1 : stats.level;
+
+      setDidLevelUp(shouldLevelUp);
+      setNewLevel(nextLevelValue);
+
+      const newlyDiscovered = [...stats.discoveredIngredients];
+      for (const p of plate) {
+        if (!newlyDiscovered.includes(p.ingredient.id)) {
+          newlyDiscovered.push(p.ingredient.id);
+        }
+      }
+
+      const nextRecipes = matchedRecipe
+        ? [...stats.discoveredRecipes, matchedRecipe.id]
+        : stats.discoveredRecipes;
+
+      setStats(prev => {
+        const next = {
+          ...prev,
+          money: prev.money + reward.total,
+          ordersServed: nextOrdersServed,
+          currentStreak: nextStreak,
+          bestStreak: Math.max(prev.bestStreak, nextStreak),
+          level: nextLevelValue,
+          discoveredIngredients: newlyDiscovered,
+          discoveredRecipes: nextRecipes,
+        };
+        savePlayerStats(next);
+        return next;
+      });
+    } else {
+      sound.playFailure();
+      setDidLevelUp(false);
+    setStats(prev => {
+        const next = {
+          ...prev,
+          ordersFailed: prev.ordersFailed + 1,
+          currentStreak: 0,
+        };
+        savePlayerStats(next);
+        return next;
+    });
+    }
+
+    setIsExpired(false);
+    setIsResultOpen(true);
+  };

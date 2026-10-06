@@ -58,7 +58,7 @@ export const EDUCATIONAL_FACTS: EducationalFact[] = [
   }
 ];
 
-export function getrandomfactforingredients(ingredientids: string[]): string {
+export function getRandomFactForIngredients(ingredientids: string[]): string {
   const matching = EDUCATIONAL_FACTS.filter(f => ingredientids.includes(f.ingredientId));
   if (matching.length > 0) {
     const pick = matching[Math.floor(Math.random() * matching.length)];
