@@ -250,3 +250,84 @@ const handleSelectIngredient = (ingredient: Ingredient) => {
     setIsExpired(false);
     setIsResultOpen(true);
   };
+
+  const handleNextOrder = () => {
+    setIsResultOpen(false);
+    setPlate([]);
+    setDiscoveredRecipe(null);
+    setDidLevelUp(false);
+
+    const nextIndex = orderCount + 1;
+    setOrderCount(nextIndex);
+
+    const currentPool = INGREDIENTS.filter(i => i.unlockedAtLevel <= stats.level);
+    const nextOrder = generateOrder(stats.level, currentPool, nextIndex);
+    setCurrentOrder(nextOrder);
+    setRemainingSeconds(nextOrder.timeLimitSec);
+  };
+
+  const handleRetryOrder = () => {
+    setIsResultOpen(false);
+    setPlate([]);
+    setRemainingSeconds(currentOrder.timeLimitSec);
+  };
+
+  const handleToggleMute = () => {
+    const muted = sound.toggleMute();
+    setIsMuted(muted);
+  };
+
+  const handleChangeMode = (newMode: GameMode) => {
+    setMode(newMode);
+    setPlate([]);
+    const nextIndex = orderCount + 1;
+    setOrderCount(nextIndex);
+
+    const targetLevel = newMode === 'rush_hour' ? 5 : newMode === 'daily' ? 3 : stats.level;
+    const currentPool = INGREDIENTS.filter(i => i.unlockedAtLevel <= targetLevel);
+    const nextOrder = generateOrder(targetLevel, currentPool, nextIndex);
+    setCurrentOrder(nextOrder);
+    setRemainingSeconds(nextOrder.timeLimitSec);
+  };
+
+  const handleResetCareer = () => {
+    const initial = { ...INITIAL_STATS };
+    setStats(initial);
+    savePlayerStats(initial);
+    sound.playAdd();
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (gameState !== 'COOKING') return;
+      if (e.code === 'Space' && !isResultOpen && !isNotebookOpen) {
+        const target = e.target as HTMLElement;
+        if (target.tagName !== 'INPUT' && target.tagName !== 'TEXT AREA') {
+          e.preventDefault();
+          if (plate.length > 0) {
+            handleServe();
+          }
+        }
+      } else if (e.code === 'Escape') {
+        if (isNotebookOpen) setIsNotebookOpen(false);
+        if (isResultOpen) handleNextOrder();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  if (gameState === 'TITLE') {
+    return (
+      <StartScreen
+        stats={stats}
+        onStartCooking={() => {
+          setGameState('COOKING');
+          setPlate([]);
+          setRemainingSeconds(currentOrder.timeLimitSec);
+        }}
+        onResetStats={handleResetCareer}
+      />
+    );
+  }  
