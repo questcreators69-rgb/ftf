@@ -8,48 +8,50 @@ I created Food Truck Formula because I wanted a fun, tactical cooking puzzle tha
 
 ### Screenshots
 
-![Food Truck Formula Gameplay Screen](./screenshot.png)
+![Food Truck Formula Start Screen](./assets/StartScreen.png) ![Food Truck Formula Gameplay Screen](./assets/CookingPage.png)
 
 ## Getting Started
 
 ### Dependencies
 
-* Windows 10/11, macOS, or Linux operating system
-* Node.js v18.0.0 or higher
-* npm (Node Package Manager)
+- Windows 10/11, macOS, or Linux operating system
+- Node.js v18.0.0 or higher
+- npm (Node Package Manager)
 
 ### Installing
 
-* Clone or download the repository code from GitHub:
+- Clone or download the repository code from GitHub:
   ```bash
   git clone https://github.com/questcreators69-rgb/ftf.git
   ```
-* Navigate into the project directory:
+- Navigate into the project directory:
   ```bash
   cd ftf
   ```
-* Install project dependencies:
+- Install project dependencies:
   ```bash
   npm install
   ```
 
 ### Executing program
 
-* Step 1: Open your terminal inside the project root folder and start the local server by running:
+- Step 1: Open your terminal inside the project root folder and start the local server by running:
   ```bash
   npm run dev
   ```
-* Step 2: Open your browser and navigate to `http://localhost:3000`.
-* Step 3: Click "START COOKING" and play using mouse clicks, touch taps, or the `[Space]` key to serve.
+- Step 2: Open your browser and navigate to `http://localhost:3000`.
+- Step 3: Click "START COOKING" and play using mouse clicks, touch taps, or the `[Space]` key to serve.
 
 ## Help
 
 If port 3000 is already in use by another application on your system, run Vite with a custom port:
+
 ```bash
 npm run dev -- --port 3001
 ```
 
 To see additional build and project management commands, run:
+
 ```bash
 npm run --help
 ```
