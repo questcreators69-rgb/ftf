@@ -74,7 +74,7 @@ const validation: OrderValidationResult = useMemo(() => {
 
   const timeOfDay: TimeOfDay = useMemo(() => {
     if (ordersServedInLevel <= 1) return 'morning';
-    if (ordersServedInLevel <= 3) return ' afternoon';
+    if (ordersServedInLevel <= 3) return 'afternoon';
     return 'evening';
   }, [ordersServedInLevel]);
 
@@ -330,4 +330,145 @@ const handleSelectIngredient = (ingredient: Ingredient) => {
         onResetStats={handleResetCareer}
       />
     );
-  }  
+  }
+
+  return (
+    <div className="h-screen w-screen bg-[#100E17] text-[#EDE7DC] font-mono selection:bg-[#EAB308] selection:text-[#181614] p-1.5 sm:p-2 flex flex-col justify-between overflow-x-hidden overflow-y-auto">
+      <div className="w-full max-w-[1360px] mx-auto flex flex-col gap-1.5 flex-1 justify-between">
+        <Header
+          money={stats.money}
+          level={stats.level}
+          timeOfDay={timeOfDay}
+          mode={mode}
+          isMuted={isMuted}
+          discoveredCount={stats.discoveredIngredients.length}
+          totalIngredients={INGREDIENTS.length}
+          isCompendiumOpen={isCompendiumVisible}
+          onToggleMute={handleToggleMute}
+          onOpenNotebook={() => setIsNotebookOpen(true)}
+          onToggleCompendium={() => setIsCompendiumVisible(prev => !prev)}
+          onChangeMode={handleChangeMode}
+          onExitToMenu={() => setGameState('TITLE')}
+        />
+
+        <div className="w-full bg-[#181524] border-3 border-[#0B0910] rounded-xs shadow-2xl relative overflow-hidden flex flex-col">
+          <div className="w-full relative flex flex-col">
+            <div className="w-full grid grid-cols-12 gap-1.5 p-1.5 sm:p-2 items-end relative z-10">
+              <div className="col-span-12 lg:col-span-3 flex flex-col justify-end">
+                <OrderTicket
+                  order={currentOrder}
+                  validation={validation}
+                  remainingSeconds={remainingSeconds}
+                />
+              </div>
+
+              <div className="col-span-12 lg:col-span-6 flex flex-col gap-1.5">
+                <div className="w-full bg-[#29221B] border-3 border-[#1A1510] p-1.5 relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#D97706_1px,transparent_1px)] [background-size:12px_12px]" />
+                  
+                  <div className="relative z-10 flex items-center justify-between pb-1">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-3.5 h-4 bg-[#B91C1C] border border-[#520B0B]" />
+                      <div className="w-3.5 h-5 bg-[#D97706] border border-[#78350F]" />
+                      <div className="w-4 h-4 bg-[#15803D] border border-[#052E16]" />
+                      <div className="w-3.5 h-5 bg-[#D49B55] border border-[#78350F]" />
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#1F1C18] border-2 border-[#524B42] flex items-center justify-center">
+                        <div className="w-1 h-2 bg-[#423C35]" />
+                      </div>
+                      <div className="w-0.5 h-4 bg-[#524B42]" />
+                    </div>
+
+                    <div className="flex flex-col items-center">
+                      <div className="w-0.5 h-2 bg-[#423C35]" />
+                      <div className="w-7 h-3 bg-[#B91C1C] rounded-t-full border border-[#520B0B] flex items-center justify-center">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#FEF08A]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <PlateView
+                    plate={plate}
+                    validation={validation}
+                    onRemoveItem={handleRemoveItem}
+                    onClearPlate={handleClearPlate}
+                  />
+                </div>
+              </div>
+
+              <div className="col-span-12 lg:col-span-3 flex flex-col justify-end gap-1.5">
+                <RightActionPanel
+                  ordersServedInLevel={ordersServedInLevel}
+                  ordersNeeded={ordersNeeded}
+                  validation={validation}
+                  plateLength={plate.length}
+                  onServe={handleServe}
+                />
+
+                <div className="hidden lg:flex justify-end pr-2">
+                  <div className="bg-[#1C1A17] border-2 border-[#38332C] px-2 py-0.5 text-[8px] text-[#A89C8D] font-bold text-center">
+                    GOOD FOOD<br />BRIGHTER DAYS
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-2 items-start">
+          <div className={isCompendiumVisible ? 'lg:col-span-7' : 'lg:col-span-12'}>
+            <IngredientSelector
+              ingredients={INGREDIENTS}
+              unlockedIngredientIds={stats.discoveredIngredients}
+              plate={plate}
+              currentLevel={stats.level}
+              isCompendiumOpen={isCompendiumVisible}
+              onToggleCompendium={() => setIsCompendiumVisible(true)}
+              onSelectIngredient={handleSelectIngredient}
+            />
+          </div>
+
+          {isCompendiumVisible && (
+            <div className="lg:col-span-5">
+              <CompendiumBoard
+                ingredients={INGREDIENTS}
+                unlockedIngredientIds={stats.discoveredIngredients}
+                recipes={RECIPES}
+                discoveredRecipeIds={stats.discoveredRecipes}
+                onClose={() => setIsCompendiumVisible(false)}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ResultModal
+        isOpen={isResultOpen}
+        isExpired={isExpired}
+        order={currentOrder}
+        validation={validation}
+        reward={lastReward}
+        streak={stats.currentStreak}
+        educationalFact={lastFact}
+        discoveredRecipe={discoveredRecipe}
+        didLevelUp={didLevelUp}
+        newLevel={newLevel}
+        onNextOrder={handleNextOrder}
+        onRetryOrder={handleRetryOrder}
+      />
+
+      <FoodNotebookModal
+        isOpen={isNotebookOpen}
+        ingredients={INGREDIENTS}
+        unlockedIngredientIds={stats.discoveredIngredients}
+        recipes={RECIPES}
+        discoveredRecipeIds={stats.discoveredRecipes}
+        onClose={() => setIsNotebookOpen(false)}
+      />
+    </div>
+  );
+}
+
+      
