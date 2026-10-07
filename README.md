@@ -1,42 +1,59 @@
 # Food Truck Formula
 
-"Build the plate. Before it's late."
+A fast-paced dark-themed culinary puzzle game where players assemble authentic street food plates to satisfy dietary rules, nutritional targets, and hungry customers before time runs out.
 
-A nutrition puzzle simulator where you run an authentic street food truck. Satisfy strict dietary guidelines, hit macronutrient target formulas, avoid allergens, and serve hungry patrons before the clock runs out.
+## Description
 
-## Gameplay Loop
+I created Food Truck Formula because I wanted a fun, tactical cooking puzzle that challenges players with real-world culinary nutrition without feeling like a boring math problem. I built the game as a standalone React web application using TypeScript, Vite, Tailwind CSS, and Lucide React icons. The game engine features dynamic order generation with guaranteed solvability, live macronutrient calculation, dietary allergen validation, recipe discovery, keyboard navigation, and procedural sound effects generated entirely with the browser's Web Audio API.
 
-- **Read**: Inspect incoming order tickets for mandatory Hard Rules (Vegan, Vegetarian, No Peanuts, No Dairy, specific required ingredients) and numerical targets (Protein minimums, Carb ranges, Calorie ceilings, Fiber).
-- **Build**: Select ingredients from your pantry across five categories: Bases, Proteins, Vegetables, Toppings, and Sauces.
-- **Watch**: Live macronutrient gauges update dynamically as ingredients are added on the serving plate.
-- **Satisfy**: Meet all restrictions and macro targets until the order transitions to the green **Order Ready** state.
-- **Serve**: Plate the order before the shift timer expires to collect fare payouts, speed bonuses, perfect formulation rewards, and streak multipliers.
-- **Progress**: Advance through shifts from Morning to Afternoon to Evening, upgrading your truck from a Starter Cart to a Food Truck Legend while unlocking new ingredients and discovering secret thali and bowl combinations in your Food Notebook.
+### Screenshots
 
-## Core Features
+![Food Truck Formula Gameplay Screen](./screenshot.png)
 
-- **Dynamic Order Generation & Solvability**: Every generated customer order is verified against the currently unlocked ingredient pool to guarantee fair, multiple-solution puzzle combinations.
-- **Immediate Visual Feedback**: Clear indicators for pending rules, met requirements, and violation warnings if an excluded allergen or diet breaker is added.
-- **Shift Atmosphere**: Dynamic time-of-day progression (Morning, Afternoon, Evening) with responsive visual themes and truck tier upgrades.
-- **Food Truck Notebook**: Track unlocked pantry ingredients with educational macro profiles and discoverable signature recipes.
-- **Audio Feedback**: Procedural Web Audio API sound effects for ingredient selection, removals, timer countdowns, success jingles, and error warnings with complete mute control.
-- **Zero External Backend**: Fully client-side standalone architecture using browser APIs and localStorage for streak and progression persistence.
+## Getting Started
 
-## Development
+### Dependencies
 
-npm install
-npm run dev
+* Windows 10/11, macOS, or Linux operating system
+* Node.js v18.0.0 or higher
+* npm (Node Package Manager)
 
-## Production Build
+### Installing
 
-npm run build
-npm run preview
+* Clone or download the repository code from GitHub:
+  ```bash
+  git clone https://github.com/questcreators69-rgb/ftf.git
+  ```
+* Navigate into the project directory:
+  ```bash
+  cd ftf
+  ```
+* Install project dependencies:
+  ```bash
+  npm install
+  ```
 
-## Tech Stack
+### Executing program
 
-- React 19
-- TypeScript
-- Tailwind CSS v4
-- Motion
-- Lucide React
-- Vite
+* Step 1: Open your terminal inside the project root folder and start the local server by running:
+  ```bash
+  npm run dev
+  ```
+* Step 2: Open your browser and navigate to `http://localhost:3000`.
+* Step 3: Click "START COOKING" and play using mouse clicks, touch taps, or the `[Space]` key to serve.
+
+## Help
+
+If port 3000 is already in use by another application on your system, run Vite with a custom port:
+```bash
+npm run dev -- --port 3001
+```
+
+To see additional build and project management commands, run:
+```bash
+npm run --help
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details
