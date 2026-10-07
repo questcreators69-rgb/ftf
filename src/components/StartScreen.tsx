@@ -445,7 +445,9 @@ export function StartScreen({ stats, onStartCooking, onResetStats }: StartScreen
               </div>
               <div className="bg-[#EFE5CF] border border-[#DECBB0] p-3 flex flex-col gap-2">
                 <div>
-                  <span className="font-bold block text-sm">Reset Career Progress</span>                  <span className="text-[10px] text-[#786958]">Clear saved money, level, and recipe progress</span>                </div>
+                  <span className="font-bold block text-sm">Reset Career Progress</span>
+                  <span className="text-[10px] text-[#786958]">Clear saved money, level, and recipe progress</span>
+                </div>
                 {!showResetConfirm ? (
                   <button
                     onClick={() => setShowResetConfirm(true)}

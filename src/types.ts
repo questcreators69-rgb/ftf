@@ -106,7 +106,7 @@ export interface RewardBreakdown {
   streakBonus: number;
   speedBonus: number;
   preferenceBonus: number;
-  total: NumberConstructor;
+  total: number;
 }
 
 export type TimeOfDay = 'morning' | 'afternoon' | 'evening';
@@ -120,7 +120,7 @@ export interface TruckInfo {
   colorTheme: string;
 }
 
-export type GameMode = 'career' | 'rush-hour' | 'daily';
+export type GameMode = 'career' | 'rush_hour' | 'daily';
 
 export interface Recipe {
   id: string;
@@ -139,7 +139,7 @@ export interface EducationalFact {
 export interface PlayerStats {
   money: number;
   level: number;
-  ordersServed: NumberConstructor;
+  ordersServed: number;
   ordersFailed: number;
   currentStreak: number;
   bestStreak: number;
